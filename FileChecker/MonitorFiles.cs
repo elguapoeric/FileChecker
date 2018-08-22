@@ -10,15 +10,16 @@ namespace FileChecker
 {
     class MonitorFiles
     {
-        string path = @"C:\Users\Eric\Desktop\myfiles.txt";
-        public MonitorFiles()
+        string path = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + @"\FilesChanged.txt";
+        public MonitorFiles(string monitorpath)
         {
             
             
             //Using the FileSystemWatcher to monitor file changes in a specific file
-            FileSystemWatcher monitor = new FileSystemWatcher(@"C:\Users\Eric\Downloads");
-            monitor.EnableRaisingEvents = true;
+            FileSystemWatcher monitor = new FileSystemWatcher(monitorpath);
             monitor.IncludeSubdirectories = false; //dont want to monitor subdirectories
+            monitor.EnableRaisingEvents = true;
+           
             
 
 
